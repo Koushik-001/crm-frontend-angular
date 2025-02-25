@@ -1,0 +1,82 @@
+.dummyModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  padding: 20px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  width: 40vw;
+  height: 70vh;
+}
+.mainDiv {
+  height: 120vh;
+}
+.dummyModal.show {
+  animation: rotatePopUp 3s forwards;
+}
+.arrowIcon {
+  height: 30px;
+  position: relative;
+  left: 50%;
+  animation: arrowAnimate 1s infinite alternate ease-in-out;
+}
+@keyframes arrowAnimate {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes rotatePopUp {
+  0% {
+    transform: translate(-50%, -50%) rotateY(0deg) scale(0);
+    opacity: 0;
+  }
+  80% {
+    transform: translate(-50%, -50%) rotateY(360deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(30%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+.loginText.show {
+    // font-family: "Playwrite IT Moderna", serif;
+  position: fixed;
+  top: 40%;
+  left: 30%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: textPopUp 2s 2.7s forwards;
+  font-size: 40px;
+  min-height: 1.5em;
+  white-space: nowrap;
+  font-weight: 400;
+}
+@keyframes textPopUp {
+  0% {
+    transform: translate(-10%, 0%);
+  }
+  100% {
+    transform: translate(-10%, 0%);
+  }
+}
+
+.loginText.show::after {
+  content: "|";
+  margin-left: 2px;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
