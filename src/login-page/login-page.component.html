@@ -1,13 +1,39 @@
-
-<div class="mainDiv">
-    <svg class="arrowIcon" xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 384 512">
-        <path
-            d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
-    </svg>
-
-    <div class="dummyModal" *ngIf="showPage" [class.show]="showPage">
-        <img alt="icon" ngSrc="PhoneIcon.png" fill>
+<div class="mainDiv" #scrollTarget>
+  <svg class="arrowIcon" xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 384 512">
+      <path
+          d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+  </svg>
+  <div class="dummyModal" *ngIf="showPage" [class.show]="showPage">
+      <img alt="icon" ngSrc="PhoneIcon.png" fill>
+  </div>
+  <p class="loginText" *ngIf="showPage" [class.show]="showPage">{{ displayText }}</p>
+  <div class="inputForm" *ngIf="showPage" [class.show]="showPage">
+     <div class="subInput" *ngIf="showInput && otpMessage === ''">
+      <select [ngModel]="selectedCountry.code" (change)="onCountryChange($event)">
+          <option *ngFor="let country of countries" [value]="country.code">
+            {{ country.flag }} {{ country.dialCode }}
+          </option>
+      </select>
+      <input 
+        type="text" 
+        placeholder="Phone" 
+        [ngModel]="phoneNumber"
+        (input)="onInputChange($event,'phone')"
+        [class.input-error]="!isValid"
+        autocomplete="tel"
+      />
     </div>
-    <p class="loginText" *ngIf="showPage" [class.show]="showPage">{{ displayText }}</p>
+    <div class="subInput" *ngIf="!showInput && otpMessage !== ''">
+      <input type="text" (input)="onInputChange($event,'otp')" placeholder="OTP"/>
+    </div>
+    <div *ngIf="validationError" style="color: red;">
+      {{ validationError }}
+    </div>
+    <div *ngIf="otpMessage && !validationError" style="color: green;">
+      {{ otpMessage }} 
+    </div>
+
+    <button (click)="onSubmit()">Submit <mat-spinner *ngIf="loading" [diameter]="20" color="black"></mat-spinner></button>
+  </div>
 </div>

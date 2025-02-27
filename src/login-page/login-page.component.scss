@@ -1,17 +1,19 @@
 .dummyModal {
   position: fixed;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
+  left: 40%;
+  transform: translate(-50%, -40%) scale(0);
   padding: 20px;
   border-radius: 10px;
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  width: 40vw;
-  height: 70vh;
+  width: 50vw;
+  height: 80vh;
 }
 .mainDiv {
   height: 120vh;
+  width: 99vw;
+  font-family: "Playwrite IT Moderna", serif;
 }
 .dummyModal.show {
   animation: rotatePopUp 3s forwards;
@@ -45,7 +47,6 @@
   }
 }
 .loginText.show {
-    // font-family: "Playwrite IT Moderna", serif;
   position: fixed;
   top: 40%;
   left: 30%;
@@ -79,4 +80,46 @@
   50% {
     opacity: 0;
   }
+}
+.inputForm.show{
+  position: fixed;
+  width: fill;
+  top: 40%;
+  left: 70%;
+  transform: translate(-50%,-50%) scale(0);
+  animation: inputSectionPop 1s 3s forwards;
+  width: 16vw;
+}
+@keyframes  inputSectionPop{
+ 0%{
+  transform:translate(20%,20%) scale(0);
+ }
+ 100%{
+  transform:translate(20%,20%) scale(1);
+ }
+}
+input{
+  font-family: "Playwrite IT Moderna", serif;
+  height: 25px;
+  border: 1px solid black;
+  color: black;
+  border-radius: 5px;
+}
+input::placeholder{
+  color: black;
+}
+button{
+  font-family: "Playwrite IT Moderna", serif;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+}
+button:hover{
+  background: black;
+  color: white;
+}
+.subInput{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3px;
 }
